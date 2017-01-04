@@ -91,11 +91,17 @@ public class IntArrayWorker
            col++)
       {
         if (row < col)
-          matrix[row][col] = 1;
+        {
+        	matrix[row][col] = 1;
+        }
         else if (row == col)
-          matrix[row][col] = 2;
+        {
+        	matrix[row][col] = 2;
+        }
         else
+        {
           matrix[row][col] = 3;
+        }
       }
     }
   }
