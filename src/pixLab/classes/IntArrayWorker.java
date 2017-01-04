@@ -105,5 +105,41 @@ public class IntArrayWorker
       }
     }
   }
+  
+  public int getCount(int numberToFind)
+  {
+	  int count = 0;
+	  
+	  for(int [] row : matrix)
+	  {
+		  for(int item : row)
+		  {
+			  if(item == numberToFind)
+			  {
+				  count++;
+			  }
+		  }
+	  }
+	  
+	  return count;
+  }
+  
+  public int getLargest()
+  {
+	  int max = Integer.MIN_VALUE;
+	  
+	  for(int [] row : matrix)
+  	  {
+		  for(int item : row)
+		  {
+			  if(item > max)
+			  {
+				  max = item;
+			  }
+		  }
+	  }
+	  
+	  return max;
+  }
  
 }
