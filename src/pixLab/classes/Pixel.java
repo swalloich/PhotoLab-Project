@@ -11,8 +11,7 @@ import java.awt.Color;
  * 
  * @author Barb Ericson ericson@cc.gatech.edu
  */
-public class Pixel
-{
+public class Pixel {
 
 	////////////////////////// fields ///////////////////////////////////
 
@@ -40,8 +39,7 @@ public class Pixel
 	 * @param y
 	 *            the y location of the pixel in the picture
 	 */
-	public Pixel(DigitalPicture picture, int x, int y)
-	{
+	public Pixel(DigitalPicture picture, int x, int y) {
 		// set the picture
 		this.picture = picture;
 
@@ -60,8 +58,7 @@ public class Pixel
 	 * 
 	 * @return the x location of the pixel in the picture
 	 */
-	public int getX()
-	{
+	public int getX() {
 		return x;
 	}
 
@@ -70,8 +67,7 @@ public class Pixel
 	 * 
 	 * @return the y location of the pixel in the picture
 	 */
-	public int getY()
-	{
+	public int getY() {
 		return y;
 	}
 
@@ -80,8 +76,7 @@ public class Pixel
 	 * 
 	 * @return the row (y value) of the pixel in the picture
 	 */
-	public int getRow()
-	{
+	public int getRow() {
 		return y;
 	}
 
@@ -90,8 +85,7 @@ public class Pixel
 	 * 
 	 * @return the column (x value) of the pixel
 	 */
-	public int getCol()
-	{
+	public int getCol() {
 		return x;
 	}
 
@@ -101,8 +95,7 @@ public class Pixel
 	 * 
 	 * @return the amount of alpha (transparency)
 	 */
-	public int getAlpha()
-	{
+	public int getAlpha() {
 
 		/*
 		 * get the value at the location from the picture as a 32 bit int with
@@ -124,8 +117,7 @@ public class Pixel
 	 * 
 	 * @return the amount of red from 0 for none to 255 for max
 	 */
-	public int getRed()
-	{
+	public int getRed() {
 
 		/*
 		 * get the value at the location from the picture as a 32 bit int with
@@ -148,8 +140,7 @@ public class Pixel
 	 *            the color value as an int
 	 * @return the amount of red
 	 */
-	public static int getRed(int value)
-	{
+	public static int getRed(int value) {
 		int red = (value >> 16) & 0xff;
 		return red;
 	}
@@ -160,8 +151,7 @@ public class Pixel
 	 * 
 	 * @return the amount of green from 0 for none to 255 for max
 	 */
-	public int getGreen()
-	{
+	public int getGreen() {
 
 		/*
 		 * get the value at the location from the picture as a 32 bit int with
@@ -182,8 +172,7 @@ public class Pixel
 	 *            the color value as an int
 	 * @return the amount of green
 	 */
-	public static int getGreen(int value)
-	{
+	public static int getGreen(int value) {
 		int green = (value >> 8) & 0xff;
 		return green;
 	}
@@ -194,8 +183,7 @@ public class Pixel
 	 * 
 	 * @return the amount of blue from 0 for none to 255 for max
 	 */
-	public int getBlue()
-	{
+	public int getBlue() {
 
 		/*
 		 * get the value at the location from the picture as a 32 bit int with
@@ -216,8 +204,7 @@ public class Pixel
 	 *            the color value as an int
 	 * @return the amount of blue
 	 */
-	public static int getBlue(int value)
-	{
+	public static int getBlue(int value) {
 		int blue = value & 0xff;
 		return blue;
 	}
@@ -227,8 +214,7 @@ public class Pixel
 	 * 
 	 * @return a color object that represents the pixel color
 	 */
-	public Color getColor()
-	{
+	public Color getColor() {
 		/*
 		 * get the value at the location from the picture as a 32 bit int with
 		 * alpha, red, green, blue each taking 8 bits from left to right
@@ -255,8 +241,7 @@ public class Pixel
 	 * @param newColor
 	 *            the new color to use
 	 */
-	public void setColor(Color newColor)
-	{
+	public void setColor(Color newColor) {
 		// set the red, green, and blue values
 		int red = newColor.getRed();
 		int green = newColor.getGreen();
@@ -279,8 +264,7 @@ public class Pixel
 	 * @param blue
 	 *            the blue value for the color at this pixel
 	 */
-	public void updatePicture(int alpha, int red, int green, int blue)
-	{
+	public void updatePicture(int alpha, int red, int green, int blue) {
 		// create a 32 bit int with alpha, red, green blue from left to right
 		int value = (alpha << 24) + (red << 16) + (green << 8) + blue;
 
@@ -295,8 +279,7 @@ public class Pixel
 	 *            value to use
 	 * @return a value within 0 to 255
 	 */
-	private static int correctValue(int value)
-	{
+	private static int correctValue(int value) {
 		if (value < 0)
 			value = 0;
 		if (value > 255)
@@ -310,8 +293,7 @@ public class Pixel
 	 * @param value
 	 *            the new value to use
 	 */
-	public void setRed(int value)
-	{
+	public void setRed(int value) {
 		// set the red value to the corrected value
 		int red = correctValue(value);
 
@@ -325,8 +307,7 @@ public class Pixel
 	 * @param value
 	 *            the value to use
 	 */
-	public void setGreen(int value)
-	{
+	public void setGreen(int value) {
 		// set the green value to the corrected value
 		int green = correctValue(value);
 
@@ -340,8 +321,7 @@ public class Pixel
 	 * @param value
 	 *            the new value to use
 	 */
-	public void setBlue(int value)
-	{
+	public void setBlue(int value) {
 		// set the blue value to the corrected value
 		int blue = correctValue(value);
 
@@ -355,8 +335,7 @@ public class Pixel
 	 * @param value
 	 *            the new value to use
 	 */
-	public void setAlpha(int value)
-	{
+	public void setAlpha(int value) {
 		// make sure that the alpha is from 0 to 255
 		int alpha = correctValue(value);
 
@@ -372,8 +351,7 @@ public class Pixel
 	 *            the color to compare to
 	 * @return the distance between this pixel's color and the passed color
 	 */
-	public double colorDistance(Color testColor)
-	{
+	public double colorDistance(Color testColor) {
 		double redDistance = this.getRed() - testColor.getRed();
 		double greenDistance = this.getGreen() - testColor.getGreen();
 		double blueDistance = this.getBlue() - testColor.getBlue();
@@ -391,8 +369,7 @@ public class Pixel
 	 *            a color object
 	 * @return the distance between the two colors
 	 */
-	public static double colorDistance(Color color1, Color color2)
-	{
+	public static double colorDistance(Color color1, Color color2) {
 		double redDistance = color1.getRed() - color2.getRed();
 		double greenDistance = color1.getGreen() - color2.getGreen();
 		double blueDistance = color1.getBlue() - color2.getBlue();
@@ -406,8 +383,7 @@ public class Pixel
 	 * 
 	 * @return the average of the red, green, and blue values
 	 */
-	public double getAverage()
-	{
+	public double getAverage() {
 		double average = (getRed() + getGreen() + getBlue()) / 3.0;
 		return average;
 	}
@@ -417,8 +393,7 @@ public class Pixel
 	 * 
 	 * @return a string with information about this pixel
 	 */
-	public String toString()
-	{
+	public String toString() {
 		return "Pixel row=" + getRow() + " col=" + getCol() + " red=" + getRed() + " green=" + getGreen() + " blue="
 				+ getBlue();
 	}
