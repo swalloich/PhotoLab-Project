@@ -5,7 +5,7 @@ package pixLab.classes;
  * methods.  Uncomment the methods and the code
  * in the main to test.
  * 
- * @author Barbara Ericson 
+ * @author Jacob Nelson 
  */
 public class PictureTester
 {
@@ -31,7 +31,16 @@ public class PictureTester
   {
 	  Picture koala = new Picture("koala.jpg");
 	  koala.explore();
-	  koala.edgeDetection(10);
+	  koala.mirrorVerticalRightToLeft();
+	  koala.zeroBlue();
+	  koala.explore();
+  }
+  
+  public static void testMirrorHorizontalBottomToTop()
+  {
+	  Picture koala = new Picture("koala.jpg");
+	  koala.explore();
+	  koala.mirrorHorizontalBottomToTop();
 	  koala.explore();
   }
   
@@ -67,14 +76,16 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
+    //testMirrorVertical();
+    //testMirrorVerticalRightToLeft();
+    testMirrorHorizontalBottomToTop();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
