@@ -99,6 +99,19 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void keepOnlyBlue()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel[] rowArray : pixels)
+	  {
+		  for(Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setRed(0);
+			  pixelObj.setGreen(0);
+		  }
+	  }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -156,6 +169,50 @@ public class Picture extends SimplePicture
 		  }
 	  }
   }
+  
+ public void mirrorDiagonal()
+ {
+	 Pixel[][] pixels = this.getPixels2D();
+	 Pixel firstDiagonal = null;
+	 Pixel secondDiagonal = null;
+	 
+	 int what = pixels[0].length;
+	 
+	 for(int col = pixels[0].length - 1; col >= 0; col--)
+	 {
+		 for(int row = what / 2 - 1; row >= 0; row--)
+		 { 
+			 if(row != col && row < pixels[0].length && col < pixels.length)
+			 {
+				 firstDiagonal = pixels[row][col];
+				 secondDiagonal = pixels[col][row];
+				 
+				 secondDiagonal.setColor(firstDiagonal.getColor());
+			 }
+		 }
+	 }
+ }
+ 
+ public void mirrorSeagulls()
+ {
+	 int whereMirror = 350;
+	 Pixel[][]pixels = this.getPixels2D();
+	 Pixel seagull1 = null;
+	 Pixel seagull2 = null;
+	 Pixel seagull3 = null;
+	 
+	 for(int row = 230; row < 325; row++)
+	 {
+		 for(int col = 230; col < 350; col++)
+		 {
+			 seagull1 = pixels[row][col];
+			 seagull2 = pixels[row][whereMirror - col + whereMirror];
+			 seagull2.setColor(seagull1.getColor());
+			 seagull3 = pixels[row][(whereMirror - 240) - col + whereMirror];
+			 seagull3.setColor(seagull1.getColor());
+		 }
+	 }
+ }
   
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
@@ -254,6 +311,48 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.WHITE);
       }
     }
+  }
+  
+  public void negate()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel [] rowArray : pixels)
+	  {
+		  for(Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setRed(255 - pixelObj.getRed());
+			  pixelObj.setGreen(255 - pixelObj.getGreen());
+			  pixelObj.setBlue(255 - pixelObj.getBlue());
+		  }
+	  }
+  }
+  
+  public void grayscale()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel [] rowArray : pixels)
+	  {
+		  for(Pixel pixelObj : rowArray)
+		  {
+			  int total;
+			  total = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue()) / 3;
+			  pixelObj.setRed(total);
+			  pixelObj.setGreen(total);
+			  pixelObj.setBlue(total);
+		  }
+	  }
+  }
+  
+  public void  fixFish()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel[] rowArray : pixels)
+	  {
+		  for(Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setRed((pixelObj.getBlue() + pixelObj.getGreen()) / 3);
+		  }
+	  }
   }
   
   

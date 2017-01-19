@@ -18,6 +18,14 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testKeepOnlyBlue()
+  {
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyBlue();
+	  beach.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -44,10 +52,34 @@ public class PictureTester
 	  koala.explore();
   }
   
+  public static void testNegate()
+  {
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.negate();
+	  beach.explore();
+  }
+  
+  public static void testGrayscale()
+  {
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.grayscale();
+	  beach.explore();
+  }
+  
+  public static void testFixFish()
+  {
+	  Picture water = new Picture("water.jpg");
+	  water.explore();
+	  water.fixFish();
+	  water.explore();
+  }
+  
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
-    Picture temple = new Picture("temple.jpg");
+    Picture temple = new Picture("koala.jpg");
     temple.explore();
     temple.mirrorTemple();
     temple.explore();
@@ -69,6 +101,40 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testMirrorDiagonal()
+  {
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.mirrorDiagonal();
+	  beach.explore();
+  }
+  
+  public static void testHoldMyBeerIGotThis()
+  {
+	  
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.mirrorDiagonal();
+	  beach.mirrorVertical();
+	  beach.mirrorHorizontalBottomToTop();
+	  beach.negate();
+	  beach.explore();
+  }
+  
+  public static void testMirrorSeagulls()
+  {
+	  Picture seagull = new Picture("seagull.jpg");
+	  seagull.explore();
+	  seagull.mirrorSeagulls();
+	  seagull.explore();
+  }
+  
+  public static void preview()
+  {
+	  Picture seagull = new Picture("seagull.jpg");
+	  seagull.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -77,28 +143,30 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     //testZeroBlue();
-    //testKeepOnlyBlue();
+//    testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
-    //testMirrorVertical();
-    //testMirrorVerticalRightToLeft();
-    testMirrorHorizontalBottomToTop();
-    //testMirrorTemple();
+//    testNegate();
+//    testGrayscale();
+//    testFixFish();
+//    testMirrorVertical();
+//    testMirrorVerticalRightToLeft();
+//    testMirrorHorizontalBottomToTop();
+//    testMirrorTemple();
     //testMirrorArms();
-    //testMirrorGull();
-    //testMirrorDiagonal();
+    testMirrorSeagulls();
+//    testMirrorDiagonal();
     //testCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
-    //testChromakey();
+//    testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+//    testHoldMyBeerIGotThis();
+//    preview();
   }
 }
