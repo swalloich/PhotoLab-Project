@@ -135,6 +135,42 @@ public class PictureTester
 	  seagull.explore();
   }
   
+  public static void testRandom()
+  {
+	  Picture trees = new Picture("cumberlandisland.jpg");
+	  trees.explore();
+	  trees.fullRandom();
+	  trees.explore();
+  }
+  
+  public static void testRandomBlue()
+  {
+	  Picture trees = new Picture("cumberlandisland.jpg");
+	  trees.explore();
+	  trees.fullRandomBlue();
+	  trees.explore();
+  }
+  
+  public static void testActuallyRandom()
+  {
+	  Picture trees = new Picture("arch.jpg");
+	  trees.explore();
+	  trees.actuallyFullRandom();
+	  trees.explore();
+	  trees.grayscale();
+	  trees.explore();
+  }
+  
+  public static void testColorEdgeDetection()
+  {
+	  Picture image = new Picture("swan.jpg");
+	  image.explore();
+	  image.colorEdgeDetection(25);
+	  image.explore();
+	  image.grayscale();
+	  image.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -154,11 +190,11 @@ public class PictureTester
 //    testMirrorHorizontalBottomToTop();
 //    testMirrorTemple();
     //testMirrorArms();
-    testMirrorSeagulls();
+//    testMirrorSeagulls();
 //    testMirrorDiagonal();
     //testCollage();
-    //testCopy();
-    //testEdgeDetection();
+//    testCopy();
+//    testEdgeDetection();
     //testEdgeDetection2();
 //    testChromakey();
     //testEncodeAndDecode();
@@ -168,5 +204,8 @@ public class PictureTester
     //testGetAverageForColumn(0);
 //    testHoldMyBeerIGotThis();
 //    preview();
+//	  testRandom();
+//	  testActuallyRandom();
+	  testColorEdgeDetection();
   }
 }

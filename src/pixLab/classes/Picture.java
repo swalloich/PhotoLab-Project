@@ -294,23 +294,84 @@ public class Picture extends SimplePicture
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
+    Pixel bottomPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
+    Color bottomColor = null;
+    for (int row = 0; row < pixels.length-1; row++)
     {
       for (int col = 0; 
-           col < pixels[0].length-1; col++)
+           col < pixels[0].length - 1; col++)
       {
         leftPixel = pixels[row][col];
-        rightPixel = pixels[row][col+1];
+        rightPixel = pixels[row][col + 1];
+        bottomPixel = pixels[row + 1][col];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+		bottomColor = bottomPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > edgeDist)
+        {
           leftPixel.setColor(Color.BLACK);
+        }
+        else if(leftPixel.colorDistance(bottomColor) > edgeDist)
+        {
+        	leftPixel.setColor(Color.BLACK);
+        }
         else
+        {
           leftPixel.setColor(Color.WHITE);
+		}
       }
     }
+//    for(int col = 0; col < pixels[0].length; col++)
+//    {
+//    	for(int row = 0; row < pixels.length - 1; row++)
+//    	{
+//    		leftPixel = pixels[row][col];
+//    		
+//    		if(leftPixel.colorDistance(bottomColor) > edgeDist)
+//    		{
+//    			leftPixel.setColor(Color.BLACK);
+//    		}
+//    		else
+//    		{
+//    			leftPixel.setColor(Color.WHITE);
+//    		}
+//    	}
+//    }
+  }
+  
+  public void colorEdgeDetection(int edgeDist)
+  {
+	  Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    Pixel bottomPixel = null;
+	    Pixel[][] pixels = this.getPixels2D();
+	    Color rightColor = null;
+	    Color bottomColor = null;
+	    for (int row = 0; row < pixels.length-1; row++)
+	    {
+	      for (int col = 0; 
+	           col < pixels[0].length - 1; col++)
+	      {
+	        leftPixel = pixels[row][col];
+	        rightPixel = pixels[row][col + 1];
+	        bottomPixel = pixels[row + 1][col];
+	        rightColor = rightPixel.getColor();
+			bottomColor = bottomPixel.getColor();
+	        if (leftPixel.colorDistance(rightColor) > edgeDist)
+	        {
+	          leftPixel.setColor(Color.BLACK);
+	        }
+	        else if(leftPixel.colorDistance(bottomColor) > edgeDist)
+	        {
+	        	leftPixel.setColor(Color.BLACK);
+	        }
+	        else
+	        {
+	          leftPixel.setColor(leftPixel.getColor());
+			}
+	      }
+	    }
   }
   
   public void negate()
@@ -343,7 +404,103 @@ public class Picture extends SimplePicture
 	  }
   }
   
-  public void  fixFish()
+  public void fullRandom()
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  for(Pixel [] row : currentPicture)
+	  {
+		  for(Pixel currentPixel : row)
+		  {
+			  int r = (int) (Math.random() * 256);
+			  int g = (int) (Math.random() * 256);
+			  int b = (int) (Math.random() * 256);
+			  
+			  currentPixel.setColor(new Color(r,g,b));
+		  }
+	  }
+  }
+  
+  public void fullRandomBlue()
+  {
+	  Pixel[][] currentPicture = this.getPixels2D();
+	  for(Pixel [] row : currentPicture)
+	  {
+		  for(Pixel currentPixel : row)
+		  {
+			  int r = (int) (currentPixel.getRed());
+			  int g = (int) (currentPixel.getGreen());
+			  int b = (int) (Math.random() * 256);
+			  
+			  currentPixel.setColor(new Color(r,g,b));
+		  }
+	  }
+  }
+  
+  public void fullRandomRed()
+  {
+	  Pixel[][] currentPicture = this.getPixels2D();
+	  for(Pixel [] row : currentPicture)
+	  {
+		  for(Pixel currentPixel : row)
+		  {
+			  int r = (int) (Math.random() * 256);
+			  int g = (int) (currentPixel.getGreen());
+			  int b = (int) (currentPixel.getBlue());
+			  
+			  currentPixel.setColor(new Color(r,g,b));
+		  }
+	  }
+  }
+  
+  public void fullRandomGreen()
+  {
+	  Pixel[][] currentPicture = this.getPixels2D();
+	  for(Pixel [] row : currentPicture)
+	  {
+		  for(Pixel currentPixel : row)
+		  {
+			  int r = (int) (currentPixel.getRed());
+			  int g = (int) (Math.random() * 256);
+			  int b = (int) (currentPixel.getBlue());
+			  
+			  currentPixel.setColor(new Color(r,g,b));
+		  }
+	  }
+  }
+  
+  public void actuallyFullRandom()
+  {
+	  Pixel[][] currentPicture = this.getPixels2D();
+//	  for(int i = 0; i < 2; i++)
+//	  {
+	  for(Pixel[] row : currentPicture)
+	  {
+		  for(Pixel currentPixel : row)
+		  {
+			  int random = (int) (Math.random() * 2);
+			  int randomColor = (int) (Math.random() * 256);
+			  int currentRed = (int) (currentPixel.getRed());
+			  int currentGreen = (int) (currentPixel.getGreen());
+			  int currentBlue = (int) (currentPixel.getBlue());
+			  
+			  switch(random)
+			  {
+			  case 0:
+				  currentPixel.setColor(new Color(randomColor, currentGreen, currentBlue));
+				  break;
+			  case 1:
+				  currentPixel.setColor(new Color(currentRed, randomColor, currentBlue));
+				  break;
+			  case 2:
+				  currentPixel.setColor(new Color(currentRed, currentGreen, randomColor));
+				  break;
+			  }
+		  }
+	  }
+//	  }
+  }
+  
+  public void fixFish()
   {
 	  Pixel[][] pixels = this.getPixels2D();
 	  for(Pixel[] rowArray : pixels)
