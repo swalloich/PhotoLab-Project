@@ -1,4 +1,9 @@
 package pixLab.classes;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -163,12 +168,28 @@ public class PictureTester
   
   public static void testColorEdgeDetection()
   {
-	  Picture image = new Picture("swan.jpg");
+	  Picture image = new Picture("arch.jpg");
 	  image.explore();
 	  image.colorEdgeDetection(25);
 	  image.explore();
 	  image.grayscale();
 	  image.explore();
+  }
+  
+  public static void testHearts(String doSave)
+  {
+	  Picture meme = new Picture("emperorCodeMeme.png");
+	  BufferedImage newMeme = new BufferedImage(meme.getWidth(), meme.getHeight(), BufferedImage.TYPE_INT_ARGB);
+	  Picture base = new Picture(newMeme);
+	  meme.explore();
+	  meme.addHearts(meme);
+	  meme.explore();
+	  meme.addMessage("doot doot", 1100, 800);
+	  meme.explore();
+//	  if(doSave.equalsIgnoreCase("yes") || doSave.equalsIgnoreCase("y"))
+//	  {
+	  meme.write("/Users/jnel4175/Pictures/Meme.png");
+//	  }
   }
   
   /** Main method for testing.  Every class can have a main
@@ -192,7 +213,7 @@ public class PictureTester
     //testMirrorArms();
 //    testMirrorSeagulls();
 //    testMirrorDiagonal();
-    //testCollage();
+//    testCollage();
 //    testCopy();
 //    testEdgeDetection();
     //testEdgeDetection2();
@@ -207,5 +228,6 @@ public class PictureTester
 //	  testRandom();
 //	  testActuallyRandom();
 	  testColorEdgeDetection();
+//	  testHearts("yes");
   }
 }
