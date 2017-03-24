@@ -539,6 +539,8 @@ public class Picture extends SimplePicture
 			}
 		}
 	}
+	
+	
 
 	/*
 	 * Main method for testing - each class in Java can have a main method
@@ -576,6 +578,68 @@ public class Picture extends SimplePicture
 			picture.copyNoBlack(heart, randomPlace(picture, "h"), randomPlace(picture, "w"));
 		}
 		picture.write("/Users/jnel4175/Pictures/newMeme2.jpg");
+	}
+	
+	public Color getAverageColor()
+	{
+		Color average = null;
+		Pixel picture = null;
+		Pixel[][] pixel = this.getPixels2D();
+		Color[] colorArray = new Color[pixel.length];
+		int index = 0;
+		for(int x = 0; x < pixel.length; x ++)
+		{
+			for(int y = 0; y < pixel[0].length; y++)
+			{
+				picture = pixel[x][y];
+				average = picture.getColor();
+				colorArray[index] = average;
+				index++;
+			}
+		}
+		
+		int red = 0;
+		int green = 0;
+		int blue = 0;
+		
+		for(int i = 0; i < colorArray.length; i++)
+		{
+			red = red + colorArray[i].getRed();
+			green = green + colorArray[i].getGreen();
+			blue =  blue + colorArray[i].getBlue();
+			if(i >= colorArray.length)
+			{
+				red = red/(i+1);
+				green = green/(i+1);
+				blue = blue/(i+1);
+			}
+		}
+		return new Color(red, green, blue);
+	}
+	
+	public void merge(Picture toBeMerged)
+	{
+		int redAverage = 0;
+		int greenAverage = 0;
+		int blueAverage = 0;
+		Pixel basePixel = null;
+		Pixel mergePixel = null;
+		Pixel[][] picture1 = this.getPixels2D();
+		Pixel[][] mergePicture = toBeMerged.getPixels2D();
+		
+		for(int width = 0; width < picture1.length - 1; width++)
+		{
+			for(int height = 0; height < picture1[0].length; height++)
+			{
+				basePixel = picture1[width][height];
+				mergePixel = mergePicture[width][height];
+				redAverage = (basePixel.getRed() + mergePixel.getRed()) / 2;
+				greenAverage = (basePixel.getGreen() + mergePixel.getGreen()) / 2;
+				blueAverage = (basePixel.getBlue() + mergePixel.getBlue()) / 2;
+				
+				basePixel.setColor(new Color(redAverage, greenAverage, blueAverage));
+			}
+		}
 	}
 
 } // this } is the end of class Picture, put all new methods before this
